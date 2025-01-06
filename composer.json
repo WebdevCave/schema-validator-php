@@ -2,6 +2,7 @@
     "name": "webdevcave/schema-validator",
     "type": "library",
     "license": "MIT",
+    "description": "Schema validation, 'Zod' like validation",
     "autoload": {
         "psr-4": {
             "Webdevcave\\SchemaValidator\\": "src/"
