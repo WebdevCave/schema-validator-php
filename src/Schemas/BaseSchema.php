@@ -21,7 +21,7 @@ abstract class BaseSchema
     /**
      * @var string[]
      */
-    protected array $errorMessages = [];
+    private array $errorMessages = [];
 
     /**
      * @param string $name
@@ -54,6 +54,7 @@ abstract class BaseSchema
     public function optional(): static
     {
         $this->optional = true;
+
         return $this;
     }
 
@@ -78,7 +79,9 @@ abstract class BaseSchema
             $this->errorMessages[] = $this->customMessages['required'] ?? 'Field is required';
         }
 
-        $this->validateSchema($value);
+        if (!empty($value)) {
+            $this->validateSchema($value);
+        }
 
         if (!is_null($this->callback)) {
             $callback = $this->callback;
@@ -91,9 +94,29 @@ abstract class BaseSchema
     }
 
     /**
+     * @param string $message
+     *
+     * @return void
+     */
+    protected final function error(string $message): void
+    {
+        $this->errorMessages[] = $message;
+    }
+
+    /**
+     * @param array $errors
+     *
+     * @return void
+     */
+    protected final function setErrorMessages(array $errors): void
+    {
+        $this->errorMessages = $errors;
+    }
+
+    /**
      * @param mixed $value
      *
-     * @return bool
+     * @return void
      */
-    abstract protected function validateSchema(mixed $value): bool;
+    abstract protected function validateSchema(mixed $value): void;
 }
