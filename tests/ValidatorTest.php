@@ -11,6 +11,10 @@ use Webdevcave\SchemaValidator\Validator;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Validator::class)]
+#[CoversClass(StringSchema::class)]
+#[CoversClass(NumericSchema::class)]
+#[CoversClass(ObjectSchema::class)]
+#[CoversClass(ArraySchema::class)]
 class ValidatorTest extends TestCase
 {
     public function testBuilders()
