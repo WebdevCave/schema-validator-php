@@ -85,8 +85,10 @@ abstract class BaseSchema
 
         if (!is_null($this->callback)) {
             $callback = $this->callback;
-            if (!$callback($value)) {
-                $this->errorMessages[] = $this->customMessages['refine'];
+            $result = $callback($value);
+
+            if (!$result) {
+                $this->error($this->customMessages['refine']);
             }
         }
 
