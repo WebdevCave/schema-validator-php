@@ -3,8 +3,8 @@
 namespace Webdevcave\SchemaValidator\Schemas;
 
 /**
- * @method NumericSchema min(int $minLength, string $customMessage = null)
- * @method NumericSchema max(int $maxLength, string $customMessage = null)
+ * @method NumericSchema min(int $minValue, string $customMessage = null)
+ * @method NumericSchema max(int $maxValue, string $customMessage = null)
  */
 class NumericSchema extends BaseSchema
 {
