@@ -9,7 +9,7 @@ A simple schema validation library for PHP. This package allows you to define ru
 - [Installation](#installation)
 - [Usage](#usage)
     - [Basic Usage](#basic-usage)
-    - [Array Schema Example](#dataset-validation-example)
+    - [Dataset Schema Example](#dataset-validation-example)
 - [Contributing](#contributing)
 - [License](#license)
 
