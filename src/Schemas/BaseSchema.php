@@ -58,7 +58,7 @@ abstract class BaseSchema
         return $this;
     }
 
-    public function refine(callable $callback, $customMessage = "Custom validation error"): static
+    public function refine(callable $callback, $customMessage = 'Custom validation error'): static
     {
         $this->customMessages['refine'] = $customMessage;
         $this->callback = $callback(...);
@@ -100,7 +100,7 @@ abstract class BaseSchema
      *
      * @return void
      */
-    protected final function error(string $message): void
+    final protected function error(string $message): void
     {
         $this->errorMessages[] = $message;
     }
@@ -110,7 +110,7 @@ abstract class BaseSchema
      *
      * @return void
      */
-    protected final function setErrorMessages(array $errors): void
+    final protected function setErrorMessages(array $errors): void
     {
         $this->errorMessages = $errors;
     }

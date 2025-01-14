@@ -19,7 +19,7 @@ class StringSchema extends BaseSchema
     protected function validateSchema(mixed $value): void
     {
         if (!is_string($value)) {
-            $this->error($this->customMessages['type'] ?? "Value must be a string");
+            $this->error($this->customMessages['type'] ?? 'Value must be a string');
         }
 
         if (!is_null($this->min)) {

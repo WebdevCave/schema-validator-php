@@ -17,7 +17,7 @@ class NumericSchema extends BaseSchema
     /**
      * @return $this
      */
-    public function integer(string $customMessage = "Value must be an integer"): static
+    public function integer(string $customMessage = 'Value must be an integer'): static
     {
         $this->integerOnly = true;
         $this->customMessages['integerOnly'] = $customMessage;
@@ -28,7 +28,7 @@ class NumericSchema extends BaseSchema
     /**
      * @return $this
      */
-    public function float(string $customMessage = "Value must be a float"): static
+    public function float(string $customMessage = 'Value must be a float'): static
     {
         $this->floatOnly = true;
         $this->customMessages['floatOnly'] = $customMessage;
@@ -39,7 +39,7 @@ class NumericSchema extends BaseSchema
     /**
      * @return $this
      */
-    public function positive(string $customMessage = "Value must be positive"): static
+    public function positive(string $customMessage = 'Value must be positive'): static
     {
         $this->positiveOnly = true;
         $this->customMessages['positiveOnly'] = $customMessage;
@@ -53,7 +53,7 @@ class NumericSchema extends BaseSchema
     protected function validateSchema(mixed $value): void
     {
         if (!is_numeric($value)) {
-            $this->error($this->customMessages['type'] ?? "Value must be a number");
+            $this->error($this->customMessages['type'] ?? 'Value must be a number');
         }
 
         if (!is_null($this->min) && $value < $this->min) {

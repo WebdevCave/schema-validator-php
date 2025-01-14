@@ -9,7 +9,8 @@ class ObjectSchema extends ArraySchema
     protected function validateSchema(mixed $value): void
     {
         if (!is_object($value)) {
-            $this->error($this->customMessages['type'] ?? "Provided value must be an object");
+            $this->error($this->customMessages['type'] ?? 'Provided value must be an object');
+
             return;
         }
 

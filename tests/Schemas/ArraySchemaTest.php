@@ -22,24 +22,24 @@ class ArraySchemaTest extends TestCase
     {
         $schema = Validator::array();
 
-        $this->assertFalse($schema->validate(1), "Array schema should not validate integers");
-        $this->assertFalse($schema->validate(1.1), "Array schema should not validate floats");
-        $this->assertFalse($schema->validate('str'), "Array schema should not validate strings");
-        $this->assertFalse($schema->validate(new stdClass()), "Array schema should not validate objects");
+        $this->assertFalse($schema->validate(1), 'Array schema should not validate integers');
+        $this->assertFalse($schema->validate(1.1), 'Array schema should not validate floats');
+        $this->assertFalse($schema->validate('str'), 'Array schema should not validate strings');
+        $this->assertFalse($schema->validate(new stdClass()), 'Array schema should not validate objects');
 
-        $this->assertTrue($schema->validate([1, 2, 3]), "Array schema should validate arrays");
+        $this->assertTrue($schema->validate([1, 2, 3]), 'Array schema should validate arrays');
     }
 
     public function testDataValidation(): void
     {
         $positiveIntCheckMessage = 'must be positive';
-        $schema = Validator::array(['name' => Validator::string()->min(3), 'age' => Validator::numeric()->integer()->positive($positiveIntCheckMessage),]);
+        $schema = Validator::array(['name' => Validator::string()->min(3), 'age' => Validator::numeric()->integer()->positive($positiveIntCheckMessage)]);
 
-        $validData = ['name' => 'Carlos', 'age' => 35,];
-        $this->assertTrue($schema->validate($validData), "Should return true when dataset is valid");
+        $validData = ['name' => 'Carlos', 'age' => 35];
+        $this->assertTrue($schema->validate($validData), 'Should return true when dataset is valid');
 
-        $invalidData = ['name' => 'John', 'age' => -10,];
-        $this->assertFalse($schema->validate($invalidData), "Should return false when dataset is not valid");
+        $invalidData = ['name' => 'John', 'age' => -10];
+        $this->assertFalse($schema->validate($invalidData), 'Should return false when dataset is not valid');
         $this->assertEquals(['age' => [$positiveIntCheckMessage]], $schema->errorMessages(), 'Error messages doesn\'t match');
     }
 
@@ -49,10 +49,10 @@ class ArraySchemaTest extends TestCase
         $schema = Validator::array(['*' => Validator::numeric()->integer($errorMessage)]);
 
         $validData = [1, 2, 3];
-        $this->assertTrue($schema->validate($validData), "Error evaluating wildcard index with valid data");
+        $this->assertTrue($schema->validate($validData), 'Error evaluating wildcard index with valid data');
 
         $invalidData = [null];
-        $this->assertFalse($schema->validate($invalidData), "Error evaluating wildcard index with invalid data");
+        $this->assertFalse($schema->validate($invalidData), 'Error evaluating wildcard index with invalid data');
     }
 
     public function testOptionalCheckShouldPassOnEmptyArray(): void
@@ -74,6 +74,6 @@ class ArraySchemaTest extends TestCase
         $data = [
             'name' => str_repeat('a', 10),
         ];
-        $this->assertTrue($schema->validate($data), "Array schema should accept double rule");
+        $this->assertTrue($schema->validate($data), 'Array schema should accept double rule');
     }
 }

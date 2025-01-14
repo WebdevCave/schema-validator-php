@@ -43,7 +43,8 @@ class BaseSchemaTest extends TestCase
 
         $this->schema->equals($value);
         $this->assertEquals(
-            $value, $this->schema->equals(),
+            $value,
+            $this->schema->equals(),
             'Schema should be able to set and get a rule value'
         );
     }
