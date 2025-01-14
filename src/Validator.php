@@ -27,7 +27,7 @@ class Validator
     }
 
     /**
-     * @param BaseSchema[] $subSchemas
+     * @param array $subSchemas
      *
      * @return ArraySchema
      */
@@ -37,7 +37,7 @@ class Validator
     }
 
     /**
-     * @param BaseSchema[] $subSchemas
+     * @param array $subSchemas
      *
      * @return ArraySchema
      */
