@@ -3,7 +3,6 @@
 namespace Webdevcave\SchemaValidator;
 
 use Webdevcave\SchemaValidator\Schemas\ArraySchema;
-use Webdevcave\SchemaValidator\Schemas\BaseSchema;
 use Webdevcave\SchemaValidator\Schemas\NumericSchema;
 use Webdevcave\SchemaValidator\Schemas\ObjectSchema;
 use Webdevcave\SchemaValidator\Schemas\StringSchema;

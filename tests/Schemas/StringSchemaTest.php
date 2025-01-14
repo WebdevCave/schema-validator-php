@@ -3,10 +3,10 @@
 namespace Webdevcave\SchemaValidator\Tests\Schemas;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Webdevcave\SchemaValidator\Schemas\BaseSchema;
 use Webdevcave\SchemaValidator\Schemas\StringSchema;
-use PHPUnit\Framework\TestCase;
 use Webdevcave\SchemaValidator\Validator;
 
 #[CoversClass(Validator::class)]
@@ -21,7 +21,7 @@ class StringSchemaTest extends TestCase
         $this->assertFalse($schema->validate(1), 'Should not validate integers');
         $this->assertFalse($schema->validate(1.2), 'Should not validate floats');
         $this->assertFalse($schema->validate([]), 'Should not validate arrays');
-        $this->assertFalse($schema->validate(new stdClass), 'Should not validate objects');
+        $this->assertFalse($schema->validate(new stdClass()), 'Should not validate objects');
         $this->assertFalse($schema->validate(null), 'Should not validate null');
         $this->assertTrue($schema->validate('my string'), 'Should validate strings');
     }

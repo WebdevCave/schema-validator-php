@@ -16,12 +16,14 @@ class ArraySchema extends BaseSchema
 
     /**
      * @inheritDoc
+     *
      * @throws Exception
      */
     protected function validateSchema(mixed $value): void
     {
         if (!is_array($value)) {
-            $this->error($this->customMessages['type'] ?? "Provided value must be an array");
+            $this->error($this->customMessages['type'] ?? 'Provided value must be an array');
+
             return;
         }
 
