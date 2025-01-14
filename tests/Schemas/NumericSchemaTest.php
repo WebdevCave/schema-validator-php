@@ -4,6 +4,7 @@ namespace Webdevcave\SchemaValidator\Tests\Schemas;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Webdevcave\SchemaValidator\Schemas\BaseSchema;
 use Webdevcave\SchemaValidator\Schemas\NumericSchema;
 use Webdevcave\SchemaValidator\Validator;
@@ -40,5 +41,35 @@ class NumericSchemaTest extends TestCase
 
         $this->assertTrue($schema->validate(1), "Failed asserting positive value");
         $this->assertFalse($schema->validate(-1), "Failed asserting negative value (positive required)");
+    }
+
+    public function testTypeValidation(): void
+    {
+        $schema = new NumericSchema();
+
+        $this->assertFalse($schema->validate('str'), "Numeric schema should not validate strings");
+        $this->assertFalse($schema->validate(new stdClass()), "Numeric schema should not validate objects");
+        $this->assertFalse($schema->validate([1,2,3]), "Numeric schema should validate arrays");
+
+        $this->assertTrue($schema->validate(1), "Numeric schema should validate integers");
+        $this->assertTrue($schema->validate(1.1), "Numeric schema should validate floats");
+    }
+
+    public function testExclusiveIntegerValidation(): void
+    {
+        $schema = new NumericSchema();
+        $schema->integer();
+
+        $this->assertTrue($schema->validate(1), "Numeric schema should validate integers (int only)");
+        $this->assertFalse($schema->validate(1.1), "Numeric schema should not validate floats (int only)");
+    }
+
+    public function testExclusiveFloatValidation(): void
+    {
+        $schema = new NumericSchema();
+        $schema->float();
+
+        $this->assertFalse($schema->validate(1), "Numeric schema should not validate integers (floats only)");
+        $this->assertTrue($schema->validate(1.1), "Numeric schema should validate floats (floats only)");
     }
 }
